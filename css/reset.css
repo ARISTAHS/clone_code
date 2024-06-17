@@ -7,6 +7,9 @@
 *::before,
 *::after {
   box-sizing: border-box;
+  vertical-align: top;
+  padding: 0;
+  margin: 0;
 }
 
 /* 폰트 크기의 팽창을 방지합니다. */
@@ -32,9 +35,8 @@ time, mark, audio, video {
 	margin: 0;
 	padding: 0;
 	border: 0;
-	font-size: 100%;
+	font-size: 16px;
 	font: inherit;
-	vertical-align: baseline;
 }
 /* HTML5 display-role reset for older browsers */
 article, aside, details, figcaption, figure, 

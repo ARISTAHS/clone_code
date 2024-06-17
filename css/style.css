@@ -19,15 +19,29 @@ header{
   }
 
   nav{
+    width: 800px;
+    height: 100%;
+
     ul{
+      width: inherit;
+      height: inherit;
       display: flex;
-      justify-content: center;
+      justify-content: space-around;
       align-items: center;
 
       li{
-        width: 100px;
+        width: 100%;
+        height: 100%;
+        text-align: center;
+        /* padding: 0 20px; */
+
         a{
-          display: block;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          width: inherit;
+          height: inherit;
+
           p{
             font-size: 1.2em;
           }
@@ -39,14 +53,54 @@ header{
 
 /* main */
 main{
-  .visual_area{
-    .visual{
-      img{
-        width: 100%;
-        height: 900px;
-      }
+
+  .visual{
+    width: 100%;
+    height: auto;
+    img{
+      width: 100%;
+      height: 900px;
     }
   }
+
+  section{
+    min-height: 800px; /* sectrion 최소 높이 고정*/
+    padding: 0 30px;
+    width: 100%;
+
+    &.content1{
+     background: #696969; 
+    }
+    &.content2{
+      background: blanchedalmond;
+    }
+    &.content3{
+      background: orchid;
+    }
+  }
+ 
 }
 
 /* footer */
+footer{
+  width: 100%;
+  min-height: 100px;
+  height: 200px;
+  background: #ccc;/* 영역 확인용 백그라운드 칼라 */
+
+  address{
+    margin: 0 auto;
+    color: #999;
+    text-align: center;
+
+    p{
+      font-size: .9em;
+      margin-bottom: 5px;
+    }
+    .copyright{
+      font-size: .7em;
+      font-family: 'Raleway';
+      font-style: italic;
+    }
+  }
+}
