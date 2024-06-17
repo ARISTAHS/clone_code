@@ -1,0 +1,52 @@
+@import './reset.css';
+
+/* header */
+header{
+  width: 100%;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+
+  .logo_area{
+    a{
+      display: inline-block;
+      img{
+        width: 60px;
+        height: auto;
+      }
+    }
+  }
+
+  nav{
+    ul{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      li{
+        width: 100px;
+        a{
+          display: block;
+          p{
+            font-size: 1.2em;
+          }
+        }
+      }
+    }
+  }
+}
+
+/* main */
+main{
+  .visual_area{
+    .visual{
+      img{
+        width: 100%;
+        height: 900px;
+      }
+    }
+  }
+}
+
+/* footer */
