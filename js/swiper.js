@@ -3,15 +3,13 @@ window.onload = function(){
   let swiper = new Swiper(".mySwiper", {
     scrollbar: {
       el: ".swiper-scrollbar",
-      hide: false,
+      hide: true,
     },
     effect : 'fade',
     loop : true,
     autoplay : {
-      delay:5000,
-      disableOnInteraction : true
+      delay:5000
     },
     speed : 400,
   });
 };
-

@@ -4,8 +4,11 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title> 제목 미정 </title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
   <link rel="stylesheet" href="/css/style.css">
 
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+  <!-- <script src="/js/swiper.js"></script> -->
   <script src="/js/main.js"></script>
 </head>
 <body>
@@ -51,11 +54,21 @@
 
     <main>
      
-      <div class="visual">
-        <img src="./image/main1.jpg" alt="visual image">
+      <div class="swiper mySwiper visual">
+        <div class="swiper-wrapper">
+          <div class="swiper-slide">
+            <img src="./image/main1.jpg" alt="visual image">
+          </div>
+          <div class="swiper-slide"> 
+            <img src="./image/fencing-4297989_1920.jpg" alt="visual image">
+          </div>
+          <div class="swiper-slide"> 
+            <img src="./image/9873b921c604d5e104a89f9221255499.jpg" alt="visual image">
+          </div>
+        </div>
+        <div class="swiper-scrollbar"></div>
       </div>
-      
-
+  
       <section class="content1">
         <h2>첫번째 컨텐츠 영역입니다.</h2>
       </section>

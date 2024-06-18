@@ -56,12 +56,40 @@ main{
 
   .visual{
     width: 100%;
-    height: auto;
+    height: 900px;
+    overflow: hidden;
+
     img{
+      display: block;
       width: 100%;
-      height: 900px;
+      height: 100%;
+      object-fit: cover;
     }
   }
+
+    /* swiper css */
+    .mySwiper{
+      position: relative;
+
+      .swiper-wrapper{
+        position: relative;
+
+        .swiper-slide{
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+      }
+      .swiper-scrollbar{
+        background: #fff;
+
+        .swiper-scrollbar-drag{
+          background: pink !important;
+          width: 300px !important;
+        }
+      }
+    }
+
 
   section{
     min-height: 800px; /* sectrion 최소 높이 고정*/
