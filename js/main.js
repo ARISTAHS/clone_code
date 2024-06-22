@@ -26,8 +26,14 @@ window.onload = function(){
   });
 
   // top 이동 버튼
-  
-
+  const Btn = document.querySelector(`footer .topBtn`);
+  console.log('Btn 확인');
+  Btn.onclick = () =>{
+    window.scrollTo({
+      top : 0,
+      behavior : "smooth"
+    });
+  };
 
 
   // 카카오 map API 

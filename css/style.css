@@ -142,6 +142,17 @@
     height: 200px;
     background: #ccc;/* 영역 확인용 백그라운드 칼라 */
 
+    button.topBtn{
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      width: 50px;
+      height: 50px;
+      text-align: center;
+      border: 1px solid blue;
+      background: rgba(blue, blue, blue, .4);
+    }
+
     address{
       margin: 0 auto;
       color: #999;
