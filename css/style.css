@@ -97,16 +97,31 @@
             display: flex;
             align-items: center;
             justify-content: center;
+
+            div.vi_text{
+              position: absolute;
+              left: 250px;
+              top: 250px;
+              text-align: left;
+              color: #fff;
+              z-index: 10;
+
+              h4{font-size: 3.5rem;}
+              p{
+                font-size: 2rem;
+                margin-top: 20px;
+              }
+            }
           }
         }
-        .swiper-scrollbar{
+        /* .swiper-scrollbar{
           background: #fff;
 
           .swiper-scrollbar-drag{
             background: pink !important;
             width: 300px !important;
           }
-        }
+        } */
       }
 
 
