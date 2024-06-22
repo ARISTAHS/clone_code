@@ -1,5 +1,15 @@
 window.onload = function(){
 
+  // intro
+  const int = document.getElementById('intro');
+  console.log('Intro element:', int); // int 콘솔 확인
+
+  setTimeout(function() {
+    console.log('Timeout executed'); // 시간 체크 콘솔 확인
+    int.classList.add('hidden');
+  }, 3000); // 3초 유지 후 전환 
+
+
   // swiper js 
   let swiper = new Swiper(".mySwiper", {
     scrollbar: {
@@ -14,6 +24,11 @@ window.onload = function(){
     },
     speed : 400,
   });
+
+  // top 이동 버튼
+  
+
+
 
   // 카카오 map API 
   kakao.maps.load(function() {
@@ -33,7 +48,6 @@ window.onload = function(){
     // 마커 지도 위 표시.
     marker.setMap(club_map);
   });
-
 
 
 

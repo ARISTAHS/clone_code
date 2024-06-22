@@ -81,4 +81,6 @@ button:focus{border: none;}
 
 .hidden{
   display: none;
+  opacity: 0;
+  pointer-events: none;
 }
