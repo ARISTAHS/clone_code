@@ -8,6 +8,7 @@ import { createGlobalStyle } from "styled-components";
 import reset from "styled-reset";
 import { useEffect, useState } from "react";
 import LoadingScreen from "./components/loading-screen";
+import { auth } from "./firebase";
 
 const router = createBrowserRouter([
   {
@@ -54,6 +55,7 @@ function App() {
   const [isLoading , setLoading] = useState(true);
   const init = async() => {
     //firebase 응답 기다림
+    await auth.authStateReady();
     setLoading(false);
     
     //로딩 화면 setTimeout 함수로 테스트 확인.
