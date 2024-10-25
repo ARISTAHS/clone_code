@@ -1,5 +1,8 @@
+import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { useState } from "react";
 import { styled } from "styled-components";
+import { auth } from "../firebase";
+import { useNavigate } from "react-router-dom";
 
 const Wrapper = styled.div`
   height:100%;
@@ -45,6 +48,7 @@ const Error = styled.span`
 
 export default function CreateAccount(){
 
+  const navigate = useNavigate();
   const [isLoading, setLoading] = useState(false);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -62,12 +66,19 @@ export default function CreateAccount(){
     }
   };
 
-  const onSubmit = (e : React.FormEvent<HTMLFormElement>) => {
+  const onSubmit = async (e : React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    if( isLoading || name === "" || email === "" || password === "") return;
     try{
       // 1번째 계정 생성
       // 2번째 사용자 프로필 이름 지정
       // 3번째 홈페이지로 재 이동
+      const credentials = await createUserWithEmailAndPassword(auth, email, password);
+      console.log(credentials.user);
+      await updateProfile(credentials.user, {
+        displayName:name,
+      });
+      navigate("/"); //로그인 이후 자동 홈화면으로 이동 -> useNavigate Hooks 사용
     } catch(e){
       //setError
     } finally{
@@ -79,7 +90,7 @@ export default function CreateAccount(){
 
   return(
     <Wrapper>
-      <Title>Log into ...</Title>
+      <Title>Join 𝕏</Title>
       <Form onSubmit={onSubmit}>
         <Input onChange={onChange} name="name" value={name} placeholder="Name" type="text" required></Input>
         <Input onChange={onChange} name="email" value={email} placeholder="Email" type="email" required></Input>
