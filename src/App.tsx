@@ -9,12 +9,14 @@ import reset from "styled-reset";
 import { useEffect, useState } from "react";
 import LoadingScreen from "./components/loading-screen";
 import { auth } from "./firebase";
+import ProtectedRoute from "./components/protected-route";
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element : <Layout></Layout>,
+    element : <ProtectedRoute><Layout></Layout></ProtectedRoute>,
     //layout 상위 컴포넌트 아래에 하위 컴포넌트 설정 -> children 사용
+    //ProtectedRoute를 Layout에 한번만 감아도 Layout의 하위 페이지들 감싸짐
     children:[
       {
         path:"",
