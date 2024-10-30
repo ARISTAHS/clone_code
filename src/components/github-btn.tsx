@@ -5,7 +5,7 @@ import { auth } from "../firebase";
 
 const Button = styled.span`
   margin-top: 30px;
-  background-color  : white;
+  background-color: white;
   font-weight: 500;
   width: 100%;
   color: black;
@@ -23,21 +23,19 @@ const Logo = styled.img`
   height: 25px;
 `;
 
-
-export default function GithubButton(){
+export default function GithubButton() {
   const navigate = useNavigate();
   const onClick = async () => {
-    try{
+    try {
       const provider = new GithubAuthProvider();
       await signInWithPopup(auth, provider);
       navigate("/");
-    } catch (error){
+    } catch (error) {
       console.error(error);
     }
+  };
 
-  }
-
-  return(
+  return (
     <Button onClick={onClick}>
       <Logo src="/github-logo.svg" />
       Continue with Github

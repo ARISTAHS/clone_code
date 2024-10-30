@@ -1,5 +1,5 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import Layout from './components/layout';
+import Layout from "./components/layout";
 import Home from "./routes/home";
 import Profile from "./routes/profile";
 import Login from "./routes/login";
@@ -14,30 +14,33 @@ import ProtectedRoute from "./components/protected-route";
 const router = createBrowserRouter([
   {
     path: "/",
-    element : <ProtectedRoute><Layout></Layout></ProtectedRoute>,
+    element: (
+      <ProtectedRoute>
+        <Layout></Layout>
+      </ProtectedRoute>
+    ),
     //layout 상위 컴포넌트 아래에 하위 컴포넌트 설정 -> children 사용
     //ProtectedRoute를 Layout에 한번만 감아도 Layout의 하위 페이지들 감싸짐
-    children:[
+    children: [
       {
-        path:"",
-        element:<Home/>,       
+        path: "",
+        element: <Home />,
       },
       {
         path: "profile",
-        element:<Profile/>
-      }
-    ]
+        element: <Profile />,
+      },
+    ],
   },
   //Layout 하위요소에 두지않고 로그인은 별도 라우팅 분리
   {
     path: "/login",
-    element:<Login/>
+    element: <Login />,
   },
   {
-    path:"/create-account",
-    element:<CreateAccount/>
-  }
-
+    path: "/create-account",
+    element: <CreateAccount />,
+  },
 ]);
 
 const GlobalStyles = createGlobalStyle`
@@ -59,27 +62,26 @@ const Wrapper = styled.div`
 `;
 
 function App() {
-  const [isLoading , setLoading] = useState(true);
-  const init = async() => {
+  const [isLoading, setLoading] = useState(true);
+  const init = async () => {
     //firebase 응답 기다림
     await auth.authStateReady();
     setLoading(false);
-    
+
     //로딩 화면 setTimeout 함수로 테스트 확인.
     //setTimeout(()=> setLoading(false),2000);
-  }
+  };
 
-  useEffect(()=>{
+  useEffect(() => {
     init();
-  },
-  []);
+  }, []);
 
   return (
     <Wrapper>
       <GlobalStyles />
-      {isLoading ? <LoadingScreen/> : <RouterProvider router={router}/> }
+      {isLoading ? <LoadingScreen /> : <RouterProvider router={router} />}
     </Wrapper>
-  )
+  );
 }
 
-export default App
+export default App;

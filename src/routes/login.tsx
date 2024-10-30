@@ -13,58 +13,76 @@ import {
 } from "../components/auth-components";
 import GithubButton from "../components/github-btn";
 
-export default function CreateAccount(){
-
+export default function CreateAccount() {
   const navigate = useNavigate();
   const [isLoading, setLoading] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
 
-  const onChange = (e:React.ChangeEvent<HTMLInputElement>) => {
-    const {target : {name, value}} = e;
-    if(name === "email"){
+  const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const {
+      target: { name, value },
+    } = e;
+    if (name === "email") {
       setEmail(value);
-    } else if(name === "password"){
+    } else if (name === "password") {
       setPassword(value);
     }
   };
 
-  const onSubmit = async (e : React.FormEvent<HTMLFormElement>) => {
+  const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setError(""); //에러 메시지가 있는 상황에서 버튼 누를시 에러메시지 사라짐
 
-    if( isLoading || email === "" || password === "") return;
-    try{
+    if (isLoading || email === "" || password === "") return;
+    try {
       setLoading(true);
       await signInWithEmailAndPassword(auth, email, password);
       navigate("/"); //로그인 이후 자동 홈화면으로 이동 -> useNavigate Hooks 사용
-    } catch(e){
+    } catch (e) {
       //setError
       console.log(e);
-      if(e instanceof FirebaseError){
+      if (e instanceof FirebaseError) {
         console.log(e.code, e.message);
         setError(e.message);
       }
-    } finally{
+    } finally {
       setLoading(false);
     }
-   
-    console.log(name,email,password);
+
+    console.log(name, email, password);
   };
 
-  return(
+  return (
     <Wrapper>
       <Title>Log into 𝕏</Title>
       <Form onSubmit={onSubmit}>
-        
-        <Input onChange={onChange} name="email" value={email} placeholder="Email" type="email" required></Input>
-        <Input onChange={onChange} name="password" value={password} placeholder="Password" type="password" required></Input>
-        <Input type="submit" value={isLoading ? "Loading..." : "Log in"}></Input>
+        <Input
+          onChange={onChange}
+          name="email"
+          value={email}
+          placeholder="Email"
+          type="email"
+          required
+        ></Input>
+        <Input
+          onChange={onChange}
+          name="password"
+          value={password}
+          placeholder="Password"
+          type="password"
+          required
+        ></Input>
+        <Input
+          type="submit"
+          value={isLoading ? "Loading..." : "Log in"}
+        ></Input>
       </Form>
       {error !== "" ? <Error>{error}</Error> : null}
       <Switcher>
-        Don't have an account?{" "} <Link to="/create-account">Create one &rarr;</Link>
+        Don't have an account?{" "}
+        <Link to="/create-account">Create one &rarr;</Link>
       </Switcher>
       <GithubButton />
     </Wrapper>
