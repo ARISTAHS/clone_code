@@ -1,49 +1,16 @@
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { useState } from "react";
-import { styled } from "styled-components";
 import { auth } from "../firebase";
-import { useNavigate } from "react-router-dom";
-
-const Wrapper = styled.div`
-  height:100%;
-  display:flex;
-  flex-direction:column;
-  align-items : center;
-  width: 420px;
-  padding : 50px 70px;  
-`;
-
-const Title = styled.h1`
-  font-size:42px;
-`;
-
-const Form = styled.form`
-  margin-top: 50px;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  width: 100%;
-`;
-
-const Input = styled.input`
-  padding: 10px 20px;
-  border: none;
-  border-radius: 50px;
-  width: 100%;
-  font-size: 16px;
-  &[type="submit"]{
-    cursor: pointer;
-    &:hover{
-      opacity: 0.8;
-    }
-  }
-`;
-
-const Error = styled.span`
-  font-weight: 700;
-  color: tomato;
-`;
-
+import { FirebaseError } from "firebase/app";
+import { Link, useNavigate } from "react-router-dom";
+import {
+  Form,
+  Error,
+  Input,
+  Switcher,
+  Title,
+  Wrapper,
+} from "../components/auth-components";
 
 
 export default function CreateAccount(){
@@ -68,8 +35,11 @@ export default function CreateAccount(){
 
   const onSubmit = async (e : React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    setError(""); //에러 메시지가 있는 상황에서 버튼 누를시 에러메시지 사라짐
+
     if( isLoading || name === "" || email === "" || password === "") return;
     try{
+      setLoading(true);
       // 1번째 계정 생성
       // 2번째 사용자 프로필 이름 지정
       // 3번째 홈페이지로 재 이동
@@ -81,6 +51,11 @@ export default function CreateAccount(){
       navigate("/"); //로그인 이후 자동 홈화면으로 이동 -> useNavigate Hooks 사용
     } catch(e){
       //setError
+      console.log(e);
+      if(e instanceof FirebaseError){
+        console.log(e.code, e.message);
+        setError(e.message);
+      }
     } finally{
       setLoading(false);
     }
@@ -98,6 +73,9 @@ export default function CreateAccount(){
         <Input type="submit" value={isLoading ? "Loading..." : "Create Account"}></Input>
       </Form>
       {error !== "" ? <Error>{error}</Error> : null}
+      <Switcher>
+        Already have an account?{" "} <Link to="/login">Log in &rarr;</Link>
+      </Switcher>
     </Wrapper>
   );
 }

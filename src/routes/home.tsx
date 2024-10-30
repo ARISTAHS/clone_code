@@ -7,6 +7,6 @@ export default function Home(){
   };
 
   return(
-    <h1><button onClick={logOut}></button></h1>
+    <h1><button onClick={logOut}>logout</button></h1>
   );
 }
